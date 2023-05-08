@@ -1,0 +1,69 @@
+From time import sleep 
+
+import RP1.GPIO as GPIO
+
+import time
+
+GPIO.setmode (GPIO.BCM) 
+
+GPIO.setup(16, GPIO.OUT) 
+
+GPIO.setup(8, GPIO.OUT)
+
+TRIG = 23
+
+ECHO = 24
+
+print ("Distance Measurement In Progress") 
+
+GPIO.setup(TRIG, GPIO.OUT)
+
+GPIO.setup(ECHO, GPIO.IN)
+
+GPIO.output(TRIG, False)
+
+print ("Waiting For Sensor To Settle")
+
+time.sleep(2) 
+
+while True:
+
+GPIO.output (TRIG, True)
+
+time.sleep(0.00001)
+
+GPIO.output (TRIG, False) 
+
+while GPIO.input (ECHO)==0:
+
+pulse_start = time.time()
+
+ while GPIO. input(ECHO)==1:
+
+pulse_end time.time() 
+
+pulse_duration pulse_end pulse_start
+
+distance pulse_duration 17150
+
+distance round (distance, 2) A = 15.0
+
+if distance < A:
+
+print("WARNING: DANGER")
+
+GPIO.output (16, True) 
+
+GPIO.output (8, True)
+
+else:
+
+print("SAFE")
+
+GPIO.output (16, False) 
+
+GPIO.output (8, False)
+
+sleep(1)
+
+GPIO.cleanup()
